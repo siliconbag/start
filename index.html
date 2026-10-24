@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мешок старт</title>
+  <meta name="description" content="Что произошло в ИИ за сутки. Hacker News, Хабр, GitHub, Hugging Face и Telegram-каналы, собранные в одну ленту на русском.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="preload" href="fonts/unbounded-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === '"dark"' || t === '"light"') document.documentElement.dataset.theme = JSON.parse(t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <a class="brand" href="https://t.me/prompt_design">
+        <span class="brand-name">Силиконовый мешок</span>
+        <span class="path">~/старт</span>
+      </a>
+      <div class="top-meta">
+        <span id="today"></span>
+        <button id="theme" class="link-btn" type="button"></button>
+      </div>
+    </header>
+
+    <section class="search" role="search">
+      <form id="search-form" autocomplete="off">
+        <label class="visually-hidden" for="q">Запрос</label>
+        <input id="q" name="q" type="search" placeholder="Найти в интернете или спросить нейросеть" autofocus spellcheck="false">
+      </form>
+      <div class="search-row">
+        <div class="choice" id="engines" aria-label="Поисковик"></div>
+        <span class="divider" aria-hidden="true">|</span>
+        <div class="choice" id="ais" aria-label="Нейросети"></div>
+        <p class="hint" id="hint"></p>
+      </div>
+    </section>
+
+    <div class="layout">
+      <main>
+        <section class="digest" aria-labelledby="digest-label" hidden>
+          <h2 class="label" id="digest-label">главное за сутки</h2>
+          <ul class="digest-list" id="digest"></ul>
+        </section>
+
+        <div class="tabs" role="tablist" aria-label="Лента">
+          <button class="tab" role="tab" data-tab="day" aria-selected="true">Сутки<span class="count" id="count-day"></span></button>
+          <button class="tab" role="tab" data-tab="week" aria-selected="false">Неделя<span class="count" id="count-week"></span></button>
+          <button class="tab" role="tab" data-tab="models" aria-selected="false">Модели<span class="count" id="count-models"></span></button>
+          <button class="only-new link-btn" id="only-new" type="button" aria-pressed="false" hidden></button>
+        </div>
+
+        <div id="panel" role="tabpanel">
+          <p class="empty">Загружаю ленту</p>
+        </div>
+      </main>
+
+      <aside class="side" id="side"></aside>
+    </div>
+
+    <footer class="foot" id="foot"></footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
